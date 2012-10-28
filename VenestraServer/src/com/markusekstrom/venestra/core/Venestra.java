@@ -18,7 +18,7 @@
  *  
  * Author can be reached by mail via markus_xtrom@hotmail.com.
  */
-package com.markusekstrom.venestra;
+package com.markusekstrom.venestra.core;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
