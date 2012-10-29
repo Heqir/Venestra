@@ -33,13 +33,17 @@ public class InGameState extends BasicGameState{
 	@Override
 	public void init(GameContainer gameContainer, StateBasedGame game)
 			throws SlickException {
-		// TODO Auto-generated method stub
+		restart();
+	}
+	
+	private void restart() {
 		
 	}
 
 	@Override
 	public void render(GameContainer gameContainer, StateBasedGame game, Graphics gfx)
 			throws SlickException {
+		
 		
 	}
 
