@@ -20,21 +20,42 @@
  */
 package com.markusekstrom.venestra.engine.messages;
 
-import java.util.Date;
+import static org.junit.Assert.*;
 
-public class GameMessage {
-	private final int value;
-    
-	public GameMessage(int value) {
-		this.value = value;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class CTSGameMessageTest {
+	
+	//Our message to test.
+	private CTSGameMessage message;
+	private int[][] positionsSent = {
+		{0, 5, 5, 7, 7},
+		{1, 2, 2, 3, 2}
+	};
+	private int[][] positionsReceived = {
+		{0, 5, 5, 7, 7},
+		{1, 2, 2, 3, 2}
+	};
+	
+	@Before
+	public void setUp() throws Exception {
+		message = new CTSGameMessage(positionsSent);
 	}
-    
-	public int getValue() {
-		return value;
+
+	@Test
+	public void testGetPositions() {
+		assertArrayEquals(positionsReceived, message.getPositions());
+		positionsSent[0][2] = 0;
+		assertTrue(message.getPositions()[0][2] != 0);
+		
+		
 	}
-    
-	@Override
-	public String toString() {
-	return new Date(value * 1000L).toString();
-    }
+	
+	@Test
+	public void testGetType() {
+		assertTrue(message.getType().equals(CTSGameMessage.class.getSimpleName()));
+	}
+
 }

@@ -25,13 +25,13 @@ import org.jboss.netty.channel.ExceptionEvent;
 import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.SimpleChannelHandler;
 
-import com.markusekstrom.venestra.engine.messages.GameMessage;
+import com.markusekstrom.venestra.engine.messages.CTSGameMessage;
 
 public class GameClientHandler extends SimpleChannelHandler{
 
     @Override
     public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) {
-    	GameMessage m = (GameMessage) e.getMessage();
+    	CTSGameMessage m = (CTSGameMessage) e.getMessage();
     	System.out.println(m);
     	e.getChannel().close();
     }

@@ -25,7 +25,7 @@ import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.handler.codec.frame.FrameDecoder;
 
-import com.markusekstrom.venestra.engine.messages.GameMessage;
+import com.markusekstrom.venestra.engine.messages.CTSGameMessage;
 
 public class GameMessageDecoder extends FrameDecoder {
 
@@ -37,6 +37,7 @@ public class GameMessageDecoder extends FrameDecoder {
 		   return null;
 	   }
 	   
-	   return new GameMessage(buffer.readInt());
+	   //return new CTSGameMessage(buffer.readInt());
+	   return null;
 	}
 }
