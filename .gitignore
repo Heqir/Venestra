@@ -5,7 +5,10 @@
 *.class
 
 # generated  files
-bin/
+Venestra-Client/bin/
+Venestra-Desktop/bin/
+Venestra-Engine/bin/
+Venestra-Server/bin/
 gen/
 
 # Local configuration file (sdk path, etc)
