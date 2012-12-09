@@ -30,8 +30,11 @@ import org.jboss.netty.channel.ChannelPipeline;
 import org.jboss.netty.channel.ChannelPipelineFactory;
 import org.jboss.netty.channel.Channels;
 import org.jboss.netty.channel.socket.nio.NioClientSocketChannelFactory;
+import org.jboss.netty.handler.codec.serialization.ClassResolvers;
+import org.jboss.netty.handler.codec.serialization.ObjectDecoder;
+import org.jboss.netty.handler.codec.serialization.ObjectEncoder;
 
-public class GameClient implements Runnable{
+public class NetworkClient implements Runnable{
 	@Override
 	public void run() {
 
@@ -44,8 +47,9 @@ public class GameClient implements Runnable{
 	        bootstrap.setPipelineFactory(new ChannelPipelineFactory() {
 	        	public ChannelPipeline getPipeline() {
 	        		return Channels.pipeline(	
-	        							new GameMessageDecoder(),
-	    								new GameClientHandler());
+	        							new ObjectEncoder(),
+	        							new ObjectDecoder(ClassResolvers.cacheDisabled(getClass().getClassLoader())),
+	    								new ClientMessageHandler());
 	        	}
 	        });
 	        

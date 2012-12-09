@@ -39,13 +39,13 @@ import com.markusekstrom.venestra.engine.messages.IMessageListener;
 import com.markusekstrom.venestra.server.core.VenestraServer;
 
 
-public class GameServer implements Runnable{
+public class NetworkServer implements Runnable{
 	
 	final static ChannelGroup allChannels = new DefaultChannelGroup("server");
 	
 	final IMessageListener listener;
 	
-	public GameServer(IMessageListener listener) {
+	public NetworkServer(IMessageListener listener) {
 		this.listener = listener;
 	}
 	
@@ -61,7 +61,7 @@ public class GameServer implements Runnable{
 				return Channels.pipeline(
 									new ObjectDecoder(ClassResolvers.cacheDisabled(getClass().getClassLoader())),
 									new ObjectEncoder(),
-									new ServerGameMessageHandler(listener)
+									new ServerMessageHandler(listener)
 				);
 			}
 		});

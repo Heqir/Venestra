@@ -21,14 +21,15 @@
 package com.markusekstrom.venestra.client.core;
 
 import com.badlogic.gdx.Game;
-import com.markusekstrom.venestra.client.network.GameClient;
+import com.markusekstrom.venestra.client.network.NetworkClient;
 
 public class VenestraClient extends Game {
 	
 	public VenestraClient() {
 		initializeGame();
-		GameClient nClient = new GameClient(); 
-		nClient.run();
+		NetworkClient nClient = new NetworkClient(); 
+		Thread nClientThread = new Thread(nClient);
+		nClientThread.start();
 	}
 	
 	private void initializeGame() {

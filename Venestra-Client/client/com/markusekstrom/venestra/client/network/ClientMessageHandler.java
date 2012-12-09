@@ -18,25 +18,27 @@
  *  
  * Author can be reached by mail via markus_xtrom@hotmail.com.
  */
-package com.markusekstrom.venestra.server.network;
+package com.markusekstrom.venestra.client.network;
 
-import static org.jboss.netty.buffer.ChannelBuffers.buffer;
-
-import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.channel.ChannelHandlerContext;
-import org.jboss.netty.channel.Channels;
+import org.jboss.netty.channel.ExceptionEvent;
 import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.SimpleChannelHandler;
 
 import com.markusekstrom.venestra.engine.messages.CTSGameMessage;
 
-public class GameMessageEncoder extends SimpleChannelHandler {
-	public void writeRequested(ChannelHandlerContext ctx, MessageEvent e) {
-		CTSGameMessage time = (CTSGameMessage) e.getMessage();
-        
-		ChannelBuffer buf = buffer(4);
-		//buf.writeInt(time.getValue());
-		
-		Channels.write(ctx, e.getFuture(), buf);
-	}
+public class ClientMessageHandler extends SimpleChannelHandler{
+
+    @Override
+    public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) {
+    	CTSGameMessage m = (CTSGameMessage) e.getMessage();
+    	System.out.println(m);
+    	e.getChannel().close();
+    }
+    
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, ExceptionEvent e) {
+    	e.getCause().printStackTrace();
+    	e.getChannel().close();
+    }
 }

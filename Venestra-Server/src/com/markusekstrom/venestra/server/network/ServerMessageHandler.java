@@ -20,29 +20,31 @@
  */
 package com.markusekstrom.venestra.server.network;
 
-import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.channel.ChannelStateEvent;
 import org.jboss.netty.channel.ExceptionEvent;
 import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.SimpleChannelHandler;
 
+import com.markusekstrom.venestra.engine.messages.CTSGameMessage;
 import com.markusekstrom.venestra.engine.messages.IMessageListener;
 import com.markusekstrom.venestra.engine.messages.MessagingSupport;
 
 
-public class ServerGameMessageHandler extends SimpleChannelHandler{
+public class ServerMessageHandler extends SimpleChannelHandler{
 	
 	private MessagingSupport ms = new MessagingSupport();
 	
-	public ServerGameMessageHandler(IMessageListener listener) {
-		//ms.addListener(listener);
+	public ServerMessageHandler(IMessageListener listener) {
+		ms.addListener(listener);
 	}
 	
 	@Override
 	public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) throws Exception {
-        Channel ch = e.getChannel();
-        e.getMessage();
+		if(e.getMessage() instanceof CTSGameMessage) {
+			CTSGameMessage message = (CTSGameMessage)e.getMessage();
+			ms.sendMessage(message);
+		}
 	}
 	
 	@Override
@@ -53,7 +55,7 @@ public class ServerGameMessageHandler extends SimpleChannelHandler{
 	
 	@Override
 	public void channelOpen(ChannelHandlerContext ctx, ChannelStateEvent e) {
-		GameServer.allChannels.add(e.getChannel());
+		NetworkServer.allChannels.add(e.getChannel());
 	}
 	
 //	 @Override
