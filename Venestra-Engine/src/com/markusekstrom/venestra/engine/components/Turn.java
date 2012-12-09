@@ -21,74 +21,15 @@
 package com.markusekstrom.venestra.engine.components;
 
 import java.awt.Component;
+import java.io.Serializable;
 /**
  * Contains information about a turn.
  *
  * @author Markus Ekström
  */
-public class Turn extends Component{
+public class Turn extends Component implements Serializable{
+	private static final long serialVersionUID = 3840529172841216601L;
 	
-	private int currentTurn;
-	private Actor currentActor;
-	
-	/**
-	 * Constructs a turn, setting the starting turn number and actor.
-	 * 
-	 * @param startingTurn
-	 * The desired starting turn number.
-	 * 
-	 * @param startingActor
-	 * The desired starting actor.
-	 */
-	public Turn(int startingTurn, Actor startingActor) {
-		currentTurn = startingTurn;
-		currentActor = startingActor;
-	}
-	
-	/**
-	 * Sets the current turn.
-	 * 
-	 * @param turnNumber 
-	 * The number to set the current turn to.
-	 */
-	public void setTurn(int turnNumber) {
-		currentTurn = turnNumber;
-	}
-	
-	/**
-	 * Returns the current turn.
-	 * 
-	 * @return 
-	 * An integer representing the current turn.
-	 */
-	public int getTurn() {
-		return currentTurn;
-	}
-	
-	/**
-	 * Increments the current turn by 1.
-	 */
-	public void incrementTurn() {
-		currentTurn++;
-	}
-	
-	/**
-	 * Sets the current actor to the passed actor.
-	 * 
-	 * @param actor 
-	 * The actor to be set to current.
-	 */
-	public void setActor(Actor actor) {
-		currentActor = actor;
-	}
-	
-	/**
-	 * Returns the current actor.
-	 * 
-	 * @return 
-	 * The current actor.
-	 */
-	public Actor getActor() {
-		return currentActor;
-	}
+	public short currentTurn = 0;
+	public Actor currentActor = null;
 }

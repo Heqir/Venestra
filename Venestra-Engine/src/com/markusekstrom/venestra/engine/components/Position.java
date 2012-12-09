@@ -20,6 +20,8 @@
  */
 package com.markusekstrom.venestra.engine.components;
 
+import java.io.Serializable;
+
 import com.artemis.Component;
 
 /**
@@ -27,76 +29,9 @@ import com.artemis.Component;
  *
  * @author Markus Ekström
  */
-public class Position extends Component {
+public class Position extends Component implements Serializable {
+	private static final long serialVersionUID = -6714799987681601256L;
 	
-	private int x;
-	private int y;
-	
-	/**
-	 * Constructs a Position and sets it to the passed values.
-	 * 
-	 * @param x
-	 * The desired position on the x-axis.
-	 * 
-	 * @param y
-	 * The desired position on the y-axis.
-	 */
-	public Position(int x, int y) {
-		this.x = x;
-		this.y = y;
-	}
-	
-	/**
-	 * Sets the position along the x-axis to the passed value.
-	 * 
-	 * @param x
-	 * The desired position on the x-axis.
-	 */
-	public void setX(int x) {
-		this.x = x;
-	}
-	
-	/**
-	 * Sets the position along the y-axis to the passed value.
-	 * 
-	 * @param y
-	 * The desired position on the y-axis.
-	 */
-	public void setY(int y) {
-		this.y = y;
-	}
-	
-	/**
-	 * Retrieves the position on the x-axis.
-	 * 
-	 * @return
-	 * The position on the x-axis.
-	 */
-	public int getX() {
-		return x;
-	}
-	
-	/**
-	 * Retrieves the position on the y-axis.
-	 * 
-	 * @return
-	 * The position on the y-axis.
-	 */
-	public int getY() {
-		return y;
-	}
-	
-	/**
-	 * Adds the passed position to the current position.
-	 * 
-	 * @param x
-	 * The value to add to the current position on the x-axis.
-	 * 
-	 * @param y
-	 * The value to add to the current position on the y-axis.
-	 */
-	public void add(int x, int y) {
-		this.x += x;
-		this.y += y;
-	}
+	public short x = 0;
+	public short y = 0;
 }

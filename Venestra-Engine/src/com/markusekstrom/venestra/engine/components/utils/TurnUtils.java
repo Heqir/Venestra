@@ -18,40 +18,45 @@
  *  
  * Author can be reached by mail via markus_xtrom@hotmail.com.
  */
-package com.markusekstrom.venestra.engine.components;
-
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Before;
-import org.junit.Test;
+package com.markusekstrom.venestra.engine.components.utils;
 
 import com.markusekstrom.venestra.engine.components.Actor;
 import com.markusekstrom.venestra.engine.components.Turn;
-import com.markusekstrom.venestra.engine.components.utils.TurnUtils;
 
-public class TurnTest {
+public class TurnUtils {
 
-	private static final short turnNumber = 2;
-	private static final Actor player1 = new Actor();
-	private Turn turn;
+	//Hidden constructor.
+	private TurnUtils(){};
 	
-	@Before
-	public void setUp() throws Exception {
-		turn = new Turn();
+	/**
+	 * Creates and initializes a turn.
+	 * 
+	 * @param startingTurn
+	 * The turn number to start on.
+	 * 
+	 * @param startingActor
+	 * The actor who is starting.
+	 * 
+	 * @return
+	 * An initialized turn.
+	 */
+	public static Turn create(short startingTurn, Actor startingActor) {
+		Turn turn = new Turn();
+		turn.currentTurn = startingTurn;
+		turn.currentActor = startingActor;
+		return turn;
 	}
 	
-	@Test
-	public void testCreate() {
-		Turn createdTurn = TurnUtils.create(turnNumber, player1);
-		assertTrue(createdTurn != null);
-		assertTrue(createdTurn.currentTurn == turnNumber);
-		assertTrue(createdTurn.currentActor.equals(player1));
+	/**
+	 * Creates
+	 * 
+	 * @param turn
+	 * @param desiredTurn
+	 * @param desiredActor
+	 */
+	public static void set(Turn turn, short desiredTurn, Actor desiredActor) {
+		turn.currentTurn = desiredTurn;
+		turn.currentActor = desiredActor;
 	}
 	
-	@Test
-	public void testSet() {
-		TurnUtils.set(turn, turnNumber, player1);
-		assertTrue(turn.currentActor.equals(player1));
-		assertTrue(turn.currentTurn == turnNumber);
-	}
 }
